@@ -1,36 +1,40 @@
-package com.shop.acl.mapper;
+package com.shop.role.mapper;
 
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * 权限表实体类
+ * 角色表实体类
  */
 @Data
-public class Acl {
+public class SysRole {
     /**
      * id
      */
-    private long id;
+    private Long id;
     /**
-     * 权限名称
+     * 角色名称
      */
     private String name;
     /**
-     * 路径
+     * 角色类型：0超级管理员，1其他
      */
-    private String path;
+    private int type;
     /**
-     * 权限等级：1，2，3分别代表一二三级权限
+     * 优先级，0是最高优先级
      */
-    private int level;
+    private int seq;
+    /**
+     * 角色备注
+     */
+    private String remark;
     /**
      * 创建时间
      */
     private Date createTime;
     /**
-     * 修改时间
+     * 更新时间
      */
     private Date updatedTime;
     /**

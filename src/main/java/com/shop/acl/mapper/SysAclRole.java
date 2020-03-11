@@ -1,32 +1,35 @@
-package com.shop.role.mapper;
+package com.shop.acl.mapper;
 
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * 角色与权限关系表实体类
+ * 权限角色表实体类
  */
 @Data
-public class RoleUser {
+public class SysAclRole {
     /**
      * id
      */
     private Long id;
+
     /**
-     * 用户id
+     * 权限id
      */
-    private long userId;
+    private long aclId;
+
     /**
      * 角色id
      */
     private long roleId;
+
     /**
      * 创建时间
      */
     private Date createTime;
     /**
-     * 更新时间
+     * 修改时间
      */
     private Date updatedTime;
     /**

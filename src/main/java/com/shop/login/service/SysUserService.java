@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface UserService {
+public interface SysUserService {
     Result<TokenVo> login(LoginParam param);
 
     List<UserVo> getUsers(UserQueryParam param);

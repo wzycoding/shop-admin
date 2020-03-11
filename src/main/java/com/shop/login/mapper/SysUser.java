@@ -8,7 +8,7 @@ import java.util.Date;
  * 用户实体类
  */
 @Data
-public class User {
+public class SysUser {
     /**
      * id
      */
@@ -52,6 +52,8 @@ public class User {
      */
     private Date lastLoginTime;
 
+
+    private int enable;
     /**
      * 删除标记
      */

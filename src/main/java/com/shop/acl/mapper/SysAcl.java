@@ -5,25 +5,26 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * 权限角色表实体类
+ * 权限表实体类
  */
 @Data
-public class AclRole {
+public class SysAcl {
     /**
      * id
      */
-    private Long id;
-
+    private long id;
     /**
-     * 权限id
+     * 权限名称
      */
-    private long aclId;
-
+    private String name;
     /**
-     * 角色id
+     * 路径
      */
-    private long roleId;
-
+    private String path;
+    /**
+     * 权限等级：1，2，3分别代表一二三级权限
+     */
+    private int level;
     /**
      * 创建时间
      */

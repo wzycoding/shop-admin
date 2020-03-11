@@ -8,7 +8,7 @@ import java.util.Date;
  * 菜单实体类
  */
 @Data
-public class Menu {
+public class SysMenu {
     /**
      * id
      */

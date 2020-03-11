@@ -5,30 +5,22 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * 角色表实体类
+ * 角色与权限关系表实体类
  */
 @Data
-public class Role {
+public class SysRoleUser {
     /**
      * id
      */
     private Long id;
     /**
-     * 角色名称
+     * 用户id
      */
-    private String name;
+    private long userId;
     /**
-     * 角色类型：0超级管理员，1其他
+     * 角色id
      */
-    private int type;
-    /**
-     * 优先级，0是最高优先级
-     */
-    private int seq;
-    /**
-     * 角色备注
-     */
-    private String remark;
+    private long roleId;
     /**
      * 创建时间
      */

@@ -1,7 +1,7 @@
 package com.shop.acl.service.impl;
 
-import com.shop.acl.mapper.Acl;
-import com.shop.acl.mapper.AclMapper;
+import com.shop.acl.mapper.SysAcl;
+import com.shop.acl.mapper.SysAclMapper;
 import com.shop.acl.service.AclService;
 import com.shop.acl.vo.AclVo;
 import org.springframework.stereotype.Service;
@@ -14,19 +14,19 @@ import java.util.List;
 public class AclServiceImpl implements AclService {
     @Override
     public List<AclVo> getAll() {
-        List<Acl> aclList = aclMapper.getAll();
+        List<SysAcl> sysAclList = sysAclMapper.getAll();
         List<AclVo> aclVoList = new ArrayList<>();
-        for (Acl acl : aclList) {
+        for (SysAcl sysAcl : sysAclList) {
             AclVo aclVo = new AclVo();
-            aclVo.setId(acl.getId());
-            aclVo.setLevel(acl.getLevel());
-            aclVo.setName(acl.getName());
-            aclVo.setPath(acl.getPath());
+            aclVo.setId(sysAcl.getId());
+            aclVo.setLevel(sysAcl.getLevel());
+            aclVo.setName(sysAcl.getName());
+            aclVo.setPath(sysAcl.getPath());
             aclVoList.add(aclVo);
         }
         return aclVoList;
     }
 
     @Resource
-    private AclMapper aclMapper;
+    private SysAclMapper sysAclMapper;
 }

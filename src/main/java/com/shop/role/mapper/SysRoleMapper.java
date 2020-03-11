@@ -1,6 +1,6 @@
 package com.shop.role.mapper;
 
-import com.shop.login.mapper.User;
+import com.shop.login.mapper.SysUser;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -9,17 +9,17 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 @Mapper
-public interface RoleMapper {
+public interface SysRoleMapper {
 
-    @Insert("insert into role(name, type, seq, remark, create_time, updated_time, `delete`)" +
+    @Insert("insert into sys_role(name, type, seq, remark, create_time, updated_time, `deleted`)" +
             " values(#{name}, #{type}, #{seq}, #{remark}, #{createTime}, #{updatedTime}, #{delete})")
-    int insert(User user);
+    int insert(SysUser user);
 
-    @Select("select * from role")
-    List<Role> getAll();
+    @Select("select * from sys_role")
+    List<SysRole> getAll();
 
     @Update("<script> " +
-            "update role " +
+            "update sys_role " +
             "<set> " +
             "<if test=\"name != null\">name=#{name},</if> " +
             "<if test=\"type != null\">type=#{type},</if> " +
@@ -28,12 +28,12 @@ public interface RoleMapper {
             "</set> " +
             "where id = #{id} " +
             "</script> ")
-    int update(Role role);
+    int update(SysRole role);
 
-    @Update("update role set `delete` = 1 where id = #{id}")
+    @Update("update sys_role set `deleted` = 1 where id = #{id}")
     int delete(long id);
 
-    @Select("select * from role where id = #{id}")
+    @Select("select * from sys_role where id = #{id}")
     int findById(long id);
 
 }

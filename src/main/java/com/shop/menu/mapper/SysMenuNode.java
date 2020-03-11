@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class MenuNode {
+public class SysMenuNode {
     /**
      * id
      */
@@ -29,5 +29,5 @@ public class MenuNode {
     /**
      * 子菜单
      */
-    private List<Menu> children;
+    private List<SysMenu> children;
 }

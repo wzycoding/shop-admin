@@ -1,8 +1,8 @@
 package com.shop.menu.service.impl;
 
-import com.shop.menu.mapper.Menu;
-import com.shop.menu.mapper.MenuMapper;
-import com.shop.menu.mapper.MenuNode;
+import com.shop.menu.mapper.SysMenu;
+import com.shop.menu.mapper.SysMenuMapper;
+import com.shop.menu.mapper.SysMenuNode;
 import com.shop.menu.service.IMenuService;
 import org.springframework.stereotype.Service;
 
@@ -15,28 +15,28 @@ import java.util.stream.Collectors;
 @Service
 public class MenuServiceImpl implements IMenuService {
     @Override
-    public List<MenuNode> getMenuList() {
-        List<Menu> menuList = menuMapper.findAll();
-        List<MenuNode> menuNodeList = new ArrayList<>();
-        Map<Integer, List<Menu>> levelIndexMap = menuList.stream().collect(Collectors.groupingBy(Menu::getLevelIndex));
-        Map<Integer, List<Menu>> parentIdMap = menuList.stream().collect(Collectors.groupingBy(Menu::getParentId));
+    public List<SysMenuNode> getMenuList() {
+        List<SysMenu> sysMenuList = sysMenuMapper.findAll();
+        List<SysMenuNode> sysMenuNodeList = new ArrayList<>();
+        Map<Integer, List<SysMenu>> levelIndexMap = sysMenuList.stream().collect(Collectors.groupingBy(SysMenu::getLevelIndex));
+        Map<Integer, List<SysMenu>> parentIdMap = sysMenuList.stream().collect(Collectors.groupingBy(SysMenu::getParentId));
 
-        List<Menu> rootMenu = levelIndexMap.get(0);
-        for (Menu menu : rootMenu) {
-            MenuNode menuNode = new MenuNode();
-            menuNode.setAuthName(menu.getAuthName());
-            menuNode.setLevelIndex(menu.getLevelIndex());
-            menuNode.setParentId(menu.getParentId());
-            menuNode.setPath(menu.getPath());
-            menuNode.setId(menu.getId());
+        List<SysMenu> rootSysMenus = levelIndexMap.get(0);
+        for (SysMenu sysMenu : rootSysMenus) {
+            SysMenuNode sysMenuNode = new SysMenuNode();
+            sysMenuNode.setAuthName(sysMenu.getAuthName());
+            sysMenuNode.setLevelIndex(sysMenu.getLevelIndex());
+            sysMenuNode.setParentId(sysMenu.getParentId());
+            sysMenuNode.setPath(sysMenu.getPath());
+            sysMenuNode.setId(sysMenu.getId());
 
-            menuNode.setChildren(parentIdMap.get(menu.getId()));
-            menuNodeList.add(menuNode);
+            sysMenuNode.setChildren(parentIdMap.get(sysMenu.getId()));
+            sysMenuNodeList.add(sysMenuNode);
         }
 
-        return menuNodeList;
+        return sysMenuNodeList;
     }
 
     @Resource
-    MenuMapper menuMapper;
+    SysMenuMapper sysMenuMapper;
 }

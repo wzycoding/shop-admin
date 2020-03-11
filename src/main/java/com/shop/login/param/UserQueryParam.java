@@ -15,6 +15,6 @@ public class UserQueryParam extends PageParam {
     /**
      * 删除标记
      */
-    private int delete;
+    private int enable;
 
 }

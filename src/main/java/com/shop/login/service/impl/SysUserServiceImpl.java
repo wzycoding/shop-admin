@@ -2,12 +2,12 @@ package com.shop.login.service.impl;
 
 import com.shop.common.constants.ErrorEnum;
 import com.shop.common.vo.Result;
-import com.shop.login.mapper.User;
-import com.shop.login.mapper.UserMapper;
+import com.shop.login.mapper.SysUser;
+import com.shop.login.mapper.SysUserMapper;
 import com.shop.login.param.LoginParam;
 import com.shop.login.param.UserParam;
 import com.shop.login.param.UserQueryParam;
-import com.shop.login.service.UserService;
+import com.shop.login.service.SysUserService;
 import com.shop.login.vo.TokenVo;
 import com.shop.login.vo.UserVo;
 import org.springframework.stereotype.Service;
@@ -19,10 +19,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class SysUserServiceImpl implements SysUserService {
     @Override
     public Result login(LoginParam param) {
-        User user = userMapper.get(param.getUsername(), param.getPassword());
+        SysUser user = userMapper.get(param.getUsername(), param.getPassword());
         if (user == null) {
             return Result.error(ErrorEnum.LOGIN_ERROR);
         }
@@ -35,9 +35,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserVo> getUsers(UserQueryParam param) {
-        List<User> users = userMapper.findUsers(param.getPageSize(), param.getSkip(), param.getQuery());
+        List<SysUser> users = userMapper.findUsers(param.getPageSize(), param.getSkip(), param.getQuery());
         List<UserVo> userVoList = new ArrayList<>();
-        for (User user : users) {
+        for (SysUser user : users) {
             UserVo userVo = userToVo(user);
             userVoList.add(userVo);
         }
@@ -52,12 +52,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int updateState(UserQueryParam param) {
-        return userMapper.updateUserState(param.getId(), param.getDelete());
+        return userMapper.updateUserState(param.getId(), param.getEnable());
     }
 
     @Override
     public int addUser(UserParam param) {
-        User user = new User();
+        SysUser user = new SysUser();
         user.setAvatar("");
         user.setEmail(param.getEmail());
         user.setNickname(param.getNickname());
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVo getById(long id) {
-        User user = userMapper.getById(id);
+        SysUser user = userMapper.getById(id);
         return userToVo(user);
     }
 
@@ -93,17 +93,17 @@ public class UserServiceImpl implements UserService {
         return uuid.toString() + id;
     }
 
-    private UserVo userToVo(User user) {
+    private UserVo userToVo(SysUser user) {
         UserVo userVo = new UserVo();
         userVo.setAvatar(user.getAvatar());
         userVo.setId(user.getId());
         userVo.setNickname(user.getNickname());
         userVo.setPhone(user.getPhone());
         userVo.setUsername(user.getUsername());
-        userVo.setState(user.getDelete() == 0);
+        userVo.setState(user.getEnable() == 1);
         userVo.setEmail(user.getEmail());
         return userVo;
     }
     @Resource
-    UserMapper userMapper;
+    SysUserMapper userMapper;
 }

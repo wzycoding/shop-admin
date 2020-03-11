@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 @Mapper
-public interface AclMapper {
+public interface SysAclMapper {
 
-    @Select("select * from acl")
-    List<Acl> getAll();
+    @Select("select * from sys_acl")
+    List<SysAcl> getAll();
 }
